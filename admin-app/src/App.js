@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-const API = "http://localhost:4000/api";
+const API = "https://booking-server-976t.onrender.com/api";
 
 async function api(path, opts = {}) {
   const token = localStorage.getItem("admin_token");
