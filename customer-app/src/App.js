@@ -375,13 +375,13 @@ function BookScreen({ t, th, onBack }) {
     setSlots(await api("/slots?"+params));
   },[]);
 
-  useEffect(()=>{ if(step===2) loadSlots(sel.dayIdx,sel.staff?.id); },[step,sel.dayIdx,sel.staff?.id,loadSlots]);
+  useEffect(()=>{ if(step===2) loadSlots(sel.dayIdx,sel.staff?._id); },[step,sel.dayIdx,sel.staff?._id,loadSlots]);
 
   const confirm=async()=>{
     setSave(true); setError("");
     try {
       const data=await api("/bookings",{method:"POST",body:{ serviceId:sel.service._id, staffId:sel.staff?._id||null, date:getDateForOffset(sel.dayIdx), time:sel.time }});
-      setDone(data.id);
+     setDone(data.bookingId || data._id);
     } catch(e){ setError(e.message); }
     setSave(false);
   };
